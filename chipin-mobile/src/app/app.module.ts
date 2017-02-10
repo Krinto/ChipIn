@@ -27,10 +27,10 @@ import { RecipeService } from '../providers/recipe-service';
     LoginPage
   ],
   providers: [
-      {provide: ErrorHandler, useClass: IonicErrorHandler},
-      Storage,
-      AuthService,
-      RecipeService
-    ]
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Storage,
+    AuthService,
+    RecipeService
+  ]
 })
 export class AppModule {}
