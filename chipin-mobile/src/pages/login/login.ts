@@ -3,6 +3,7 @@ import { NavController, NavParams, LoadingController, MenuController } from 'ion
 import { AuthService } from '../../providers/auth-service';
 import { HomePage } from '../home/home';
 import { SignupPage } from '../signup/signup';
+import md5 from 'crypto-md5';
 
 /*
   Generated class for the Login page.
@@ -19,6 +20,7 @@ export class LoginPage {
   email: string;
   password: string;
   loading: any;
+  profilePicture: any = "https://www.gravatar.com/avatar/"
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public loadingCtrl: LoadingController, public menuCtrl: MenuController) {
     this.menuCtrl.swipeEnable(false);
@@ -61,5 +63,9 @@ export class LoginPage {
       });
 
       this.loading.present();
+    }
+
+    emailChanged(){
+        this.profilePicture = "https://www.gravatar.com/avatar/" + md5(this.email.toLowerCase(), 'hex');
     }
 }
