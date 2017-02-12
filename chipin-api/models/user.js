@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt-nodejs');
 
 var userSchema = mongoose.Schema({
@@ -15,7 +16,9 @@ var userSchema = mongoose.Schema({
     googleId: String,
 	facebookId: String,
 	displayName: String,
-	active: Boolean
+	active: Boolean,
+    owner: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
+    member: [{ type: Schema.Types.ObjectId, ref: 'Group' }]
 }, {
     timestamps: true
 });
