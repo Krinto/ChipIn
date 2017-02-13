@@ -31,7 +31,7 @@ var config = {
         //server details
         server: {
             host: process.env.WEB_HOST,
-            port: process.env.WEB_PORT
+            port: process.env.PORT
         },
         secret: process.env.JWT_SECRET
     }

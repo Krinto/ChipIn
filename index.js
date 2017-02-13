@@ -21,5 +21,5 @@ app.use(morgan('dev'));
 router(app);
 
 var server = app.listen(config.server.port, function () {
-    console.log('Server running at http://' + config.server.host + ':' + config.server.port + '/');
+    console.log('Server running at ' + config.server.host + ':' + config.server.port + '/');
 });
