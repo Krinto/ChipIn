@@ -5,6 +5,7 @@ var config = require('../config/main')[env];
 
 exports.register = function(req, res, next){
     var email = req.body.email;
+    var name = req.body.name;
     var pass = req.body.password;
     if(!email){
         return res.status(422).json({ message: 'You must enter an email' });
@@ -23,6 +24,7 @@ exports.register = function(req, res, next){
 
         var newUser = new User({
             email: email,
+            displayName: name,
             password: pass
         });
 
