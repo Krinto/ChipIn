@@ -1,4 +1,11 @@
 language: node_js
 node_js:
-  - "node"
-  - "6"
+- node
+- v6
+deploy:
+  provider: heroku
+  api_key:
+    secure: SULmh/ebNqsv/BM/07wgGJkSpyJ0GDC1nqNAkcggCRdzfCy8FCDR1lzjnXq976NszBFsftj8vLoYoN3PvApmXPEysugSkB9yP/Ww2uhC6BLzbth84/yl9O7AUibZUIFZABPJUMtco9H3BvwBZ626JmKg+Sp5EEFG+QTHjru8hQcQfVioRsIz3WbItmG5tklOFVTBbe3khCB6EK13845d9xqgxteioDBQkFsudj0vSw2IJ7Jw0Rt9gMEcBrAJY8riawvsvMT7Y8b06waxXNxKfkVSGZKdW7xKcdmv90dJTvFlzq8X3pI5gHebSg83LtcpYZvKORbA+PDnnKQH1RjdVQIi1Bp7nLAY46o4g8K0RuIsf/XTgBeuwBB5jK5rMEmjPPU55JpiJ+QsqQBjBV8wyZ0JCBFqxw3IP7C8rGlC1Nw1xt8KXUv4FMXp/lxLmGtgCEmHpzHcGuoDCLjNIbF78epoUnXMHanu1d37+iWlRg21PtW42oDFWksKTyiF0a9uiC3pt32+aam4tQibb5Si4IMDWygMZFNYLB2G2S1SCNc7nd0agIMJA6iNYkiqc9IqUSpcpriDXId2E97Dt+jf7rRGGZfsUC/sGCKzAbqEfRRBJRolsndWIGPw31lqKJgcLmJ/7vzeWbJEFcwirYLPPgzedRpmN+n221IOqBxCpDs=
+  app: ChipIn-Api
+  on:
+    repo: Krinto/ChipIn-Api
