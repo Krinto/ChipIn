@@ -4,20 +4,12 @@ var chai = require('chai');
 var should = chai.should();
 var expect = chai.expect();
 var chaiHttp = require('chai-http');
-var Mongoose = require('mongoose').Mongoose;
-var mongoose = new Mongoose();
-var mockgoose = require('mockgoose');
 var server = require('../index');
+var db = require('./test_helpers');
 
 chai.use(chaiHttp);
 
 describe('Authentication', function() {
-
-    before(function(done) {
-        mockgoose(mongoose);
-        mongoose.connect('mongodb://localhost:27017/mydatabase');
-        done();
-    });
 
     it('can call root route', function(done) {
         chai.request(server)
