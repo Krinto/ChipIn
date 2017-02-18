@@ -1,7 +1,25 @@
 var config = {
     development: {
         //url to be used in link generation
-        url: 'http://nutrap.nexus.home',
+        url: 'http://localhost:3000',
+        //mongodb connection settings
+        database: {
+            host:       'mongo.nexus.home',
+            port:       '27017',
+            db:         'nutrap',
+            user:       'apiuser',
+            password:   'password1234'
+        },
+        //server details
+        server: {
+            host: '127.0.0.1',
+            port: '3000'
+        },
+        secret: 'thisisasecret'
+    },
+    test: {
+        //url to be used in link generation
+        url: 'http://localhost:3000',
         //mongodb connection settings
         database: {
             host:       'mongo.nexus.home',

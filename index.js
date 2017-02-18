@@ -16,10 +16,14 @@ mongoose.connect('mongodb://' + config.database.user + ':' + config.database.pas
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
-app.use(morgan('dev'));
+if(env !== 'test'){
+    app.use(morgan('dev'));
+}
 
 router(app);
 
 var server = app.listen(config.server.port, function () {
     console.log('Server running at ' + config.server.host + ':' + config.server.port + '/');
 });
+
+module.exports = app; // for testing
