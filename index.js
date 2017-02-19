@@ -9,10 +9,17 @@ var router = require('./router');
 var cors = require('cors');
 var app = express();
 
-mongoose.Promise = global.Promise;
+mongoose.Promise = require('q').Promise;
 if(env === 'test') {
-    mockgoose(mongoose);
-    mongoose.connect('mongodb://localhost/test');
+    mockgoose(mongoose).then(function() {
+	    mongoose.connect('mongodb://localhost/test');
+        if(mongoose.isMocked === true) {
+            console.log('Mongoose successfuly mocked');
+        }
+        else {
+            throw new Error('Mongoose mocking failed');
+        }
+    });
 }
 else {
     mongoose.connect('mongodb://' + config.database.user + ':' + config.database.password + '@' +

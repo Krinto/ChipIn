@@ -22,11 +22,11 @@ var config = {
         url: 'http://localhost:3000',
         //mongodb connection settings
         database: {
-            host:       'mongo.nexus.home',
-            port:       '27017',
-            db:         'nutrap',
-            user:       'apiuser',
-            password:   'password1234'
+            host:       process.env.DB_HOST,
+            port:       process.env.DB_PORT,
+            db:         process.env.DB_NAME,
+            user:       process.env.DB_USER,
+            password:   process.env.DB_PASSWORD
         },
         //server details
         server: {
