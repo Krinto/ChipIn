@@ -45,12 +45,13 @@ describe('Authentication', function() {
                 if(err){
                     done(err);
                 }
+                done();
             });
         });
 
         after(function(done) {
             mockgoose.reset(function() {
-                done()
+                done();
             });
         });
 
