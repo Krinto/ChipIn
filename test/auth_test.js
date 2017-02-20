@@ -61,7 +61,7 @@ describe('Authentication', function() {
                 password: 'password'
             };
             chai.request(server)
-                .post('/api/register')
+                .post('/api/auth/register')
                 .send(req)
                 .end((err, res) => {
                     res.should.have.status(422);
@@ -77,7 +77,7 @@ describe('Authentication', function() {
                 name: 'bob'
             };
             chai.request(server)
-                .post('/api/register')
+                .post('/api/auth/register')
                 .send(req)
                 .end((err, res) => {
                     res.should.have.status(422);
@@ -94,7 +94,7 @@ describe('Authentication', function() {
                 password: 'password'
             };
             chai.request(server)
-                .post('/api/register')
+                .post('/api/auth/register')
                 .send(req)
                 .end((err, res) => {
                     res.should.have.status(422);
@@ -111,7 +111,7 @@ describe('Authentication', function() {
                 password: 'password'
             };
             chai.request(server)
-                .post('/api/register')
+                .post('/api/auth/register')
                 .send(req)
                 .end((err, res) => {
                     res.should.have.status(201);
