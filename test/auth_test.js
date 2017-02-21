@@ -123,4 +123,91 @@ describe('Authentication', function() {
             });
         });
     });
+
+    describe('Login', function() {
+        
+        before(function(done) {
+            var newUser = new User({
+                email: 'test@test.com',
+                displayName: 'testing',
+                password: 'password'
+            });
+            newUser.save(function(err, user){
+                if(err){
+                    done(err);
+                }
+                done();
+            });
+        });
+
+        after(function(done) {
+            mockgoose.reset(function() {
+                done();
+            });
+        });
+
+        it('should fail when missing email', function(done) {
+            var req = {
+                password: 'password'
+            };
+            chai.request(server)
+                .post('/api/auth/authenticate')
+                .send(req)
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Authentication failed');
+                    done();
+            });
+        });
+
+        it('should fail when missing password', function(done) {
+            var req = {
+                email: 'test@test.com'
+            };
+            chai.request(server)
+                .post('/api/auth/authenticate')
+                .send(req)
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Authentication failed');
+                    done();
+            });
+        });
+
+        it('should fail when user not in database', function(done) {
+            var req = {
+                email: 'bob@test.com',
+                password: 'password'
+            };
+            chai.request(server)
+                .post('/api/auth/authenticate')
+                .send(req)
+                .end((err, res) => {
+                    res.should.have.status(400);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Authentication failed');
+                    done();
+            });
+        });
+
+        it('should login with correct credentials', function(done) {
+            var req = {
+                email: 'test@test.com',
+                password: 'password'
+            };
+            chai.request(server)
+                .post('/api/auth/authenticate')
+                .send(req)
+                .end((err, res) => {
+                    res.should.have.status(201);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('message').eql('Successfully logged in');
+                    res.body.should.have.property('token');
+                    res.body.should.have.property('user');
+                    done();
+            });
+        });
+    });
 });
