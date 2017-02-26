@@ -10,7 +10,11 @@ var groupSchema = mongoose.Schema({
     },
     description: String,
     collections: [Collection],
-    owner: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+    owner: { 
+        type: Schema.Types.ObjectId, 
+        ref: 'User',
+        required: true
+    },
 }, {
     timestamps: true
 });

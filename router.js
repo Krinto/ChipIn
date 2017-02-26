@@ -1,7 +1,7 @@
 var express = require('express');
 var passport = require('passport');
 
-var recipesCountroller = require('./controllers/recipes');
+var groupsCountroller = require('./controllers/groups');
 var authController = require('./controllers/auth');
 
 module.exports = function(app) {
@@ -10,7 +10,7 @@ module.exports = function(app) {
 
     var apiRoutes = express.Router();
     var authRoutes = express.Router();
-    var recipeRoutes = express.Router();
+    var groupRoutes = express.Router();
 
     // ====================================================
     // Auth Routes
@@ -34,20 +34,20 @@ module.exports = function(app) {
     });
 
     // ====================================================
-    // Recipe Routes
+    // Group Routes
 
-    apiRoutes.use('/recipe', recipeRoutes);
-    recipeRoutes.use(passport.authenticate('jwt', { session: false }));
+    apiRoutes.use('/group', groupRoutes);
+    groupRoutes.use(passport.authenticate('jwt', { session: false }));
 
-    recipeRoutes.get('/', recipesCountroller.getAllRecipes);
+    groupRoutes.get('/', groupsCountroller.getAllGroups);
 
-    recipeRoutes.post('/', recipesCountroller.createRecipe);
+    groupRoutes.post('/', groupsCountroller.createGroup);
 
-    recipeRoutes.get('/:id', recipesCountroller.getRecipe);
+    groupRoutes.get('/:id', groupsCountroller.getGroup);
 
-    recipeRoutes.put('/:id', recipesCountroller.updateRecipe);
+    groupRoutes.put('/:id', groupsCountroller.updateGroup);
 
-    recipeRoutes.delete('/:id', recipesCountroller.deleteRecipe);
+    groupRoutes.delete('/:id', groupsCountroller.deleteGroup);
 
     // ====================================================
     // Base url for api routes
