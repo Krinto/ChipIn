@@ -209,5 +209,53 @@ describe('Authentication', function() {
                     done();
             });
         });
+
+        describe('Logged In', function() {
+            before(function(done) {
+                var newUser = new User({
+                    email: 'test@test.com',
+                    displayName: 'testing',
+                    password: 'password'
+                });
+                newUser.save(function(err, user){
+                    if(err){
+                        done(err);
+                    }
+                    done();
+                });
+            });
+
+            after(function(done) {
+                mockgoose.reset(function() {
+                    done();
+                });
+            });
+
+            it('should authenticate with correct token', function(done) {
+                var req = {
+                    email: 'test@test.com',
+                    password: 'password'
+                };
+                chai.request(server)
+                    .post('/api/auth/authenticate')
+                    .send(req)
+                    .end((err, res) => {
+                        res.should.have.status(201);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('message').eql('Successfully logged in');
+                        res.body.should.have.property('token');
+                        res.body.should.have.property('user');
+                        chai.request(server)
+                            .post('/api/protected')
+                            .set('Authentication', 'JWT ' + res.body.token)
+                            .end((err, res) => {
+                                res.should.have.status(200);
+                                res.body.should.be.a('object');
+                                res.body.should.have.property('message');
+                                done();
+                        });
+                });
+            });
+        });
     });
 });
