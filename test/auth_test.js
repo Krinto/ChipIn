@@ -246,7 +246,7 @@ describe('Authentication', function() {
                         res.body.should.have.property('token');
                         res.body.should.have.property('user');
                         chai.request(server)
-                            .getp('/api/protected')
+                            .get('/api/protected')
                             .set('Authorization', 'JWT ' + res.body.token)
                             .end((err, res) => {
                                 res.should.have.status(200);
