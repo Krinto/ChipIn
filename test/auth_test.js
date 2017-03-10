@@ -245,7 +245,7 @@ describe('Authentication', function() {
                         res.body.should.have.property('message').eql('Successfully logged in');
                         res.body.should.have.property('token');
                         res.body.should.have.property('user');
-                        console.log("Token is: " + req.body.token);
+                        console.log("Token is: " + res.body.token);
                         chai.request(server)
                             .get('/api/protected')
                             .set('authorization', 'JWT ' + res.body.token)
