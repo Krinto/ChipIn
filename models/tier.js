@@ -1,6 +1,8 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose"),
+    Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 
-var tierSchema = mongoose.Schema({
+var tierSchema = new Schema({
 
     name: {
         type: String,

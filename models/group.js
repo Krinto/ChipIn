@@ -1,15 +1,16 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose = require("mongoose"),
+    Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 var Collection = require('./collection');
 
-var groupSchema = mongoose.Schema({
+var groupSchema = new Schema({
 
     name: {
         type: String,
         required: true
     },
     description: String,
-    collections: [Collection],
+    collections: [Collection.schema],
     owner: { 
         type: Schema.Types.ObjectId, 
         ref: 'User',

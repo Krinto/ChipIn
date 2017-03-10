@@ -1,7 +1,9 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose"),
+    Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 var Tier = require('./tier');
 
-var collectionSchema = mongoose.Schema({
+var collectionSchema = new Schema({
 
     name: {
         type: String,
@@ -11,7 +13,7 @@ var collectionSchema = mongoose.Schema({
     validTo: Date,
     goal: Number,
     allowCustomPrice: Boolean,
-    tiers: [Tier]
+    tiers: [Tier.schema]
 }, {
     timestamps: true
 });
